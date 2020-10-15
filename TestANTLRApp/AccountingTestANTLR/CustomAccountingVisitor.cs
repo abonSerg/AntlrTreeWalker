@@ -15,14 +15,14 @@ namespace AccountingTestANTLR
             }
         }
 
-        private static void VisitChildNode(IParseTree tree)
+        private static void VisitChildNode(IParseTree node)
         {
-            if (tree.ChildCount > 0)
+            if (node.ChildCount > 0)
             {
                 List<IParseTree> children = null;
                 string ruleName = string.Empty;
 
-                switch (tree)
+                switch (node)
                 {
                     case AccountingParser.EmployeeContext empContext:
                         children = empContext.children.ToList();
@@ -52,7 +52,7 @@ namespace AccountingTestANTLR
                 return;
             }
             
-            var text = ((TerminalNodeImpl)tree).Payload.Text;
+            var text = ((TerminalNodeImpl)node).Payload.Text;
             Console.WriteLine(text == "\n" ? "\\n" : text);
         }
         

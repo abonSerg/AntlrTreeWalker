@@ -1,4 +1,5 @@
-﻿using System.Reflection.PortableExecutable;
+﻿using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Runtime.CompilerServices;
 using Antlr4.Runtime;
 
@@ -16,10 +17,14 @@ namespace AccountingTestANTLR
             var commonTokenStream = new CommonTokenStream(lexer);
             var parser = new AccountingParser(commonTokenStream);
             var context = parser.accounting();
-            var visitor = new CustomAccountingVisitor();        
+            
+            // Version 1
+            var visitor = new InternalAccountingVisitor();        
+            
+            //Version 2
+            //var visitor = new CustomAccountingVisitor(); 
+            
             visitor.Visit(context);
         }
     }
-    
-    
 }
